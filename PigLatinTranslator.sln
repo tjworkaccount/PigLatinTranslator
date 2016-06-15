@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{E80DE758-6DBC-484C-B150-7594105ACDF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.cs", "Application.cs\Application.cs.csproj", "{E5F18C1A-797E-46CE-969E-796868D6D080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translator", "Translator\Translator.csproj", "{470A0915-DA31-46BE-989F-C7828E21A53A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translate", "Translate\Translate.csproj", "{B75B71AD-9EB9-4BAC-979D-A44B3B0FF797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E80DE758-6DBC-484C-B150-7594105ACDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E80DE758-6DBC-484C-B150-7594105ACDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E80DE758-6DBC-484C-B150-7594105ACDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E80DE758-6DBC-484C-B150-7594105ACDF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{470A0915-DA31-46BE-989F-C7828E21A53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{470A0915-DA31-46BE-989F-C7828E21A53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{470A0915-DA31-46BE-989F-C7828E21A53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{470A0915-DA31-46BE-989F-C7828E21A53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5F18C1A-797E-46CE-969E-796868D6D080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5F18C1A-797E-46CE-969E-796868D6D080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5F18C1A-797E-46CE-969E-796868D6D080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5F18C1A-797E-46CE-969E-796868D6D080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B75B71AD-9EB9-4BAC-979D-A44B3B0FF797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B75B71AD-9EB9-4BAC-979D-A44B3B0FF797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B75B71AD-9EB9-4BAC-979D-A44B3B0FF797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B75B71AD-9EB9-4BAC-979D-A44B3B0FF797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
