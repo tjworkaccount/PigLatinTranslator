@@ -1,7 +1,7 @@
 ﻿using System;
 using Translate;
 
-namespace Application.cs
+namespace Application
 {
     class Program
     {
@@ -15,11 +15,11 @@ namespace Application.cs
                 Console.WriteLine(instructions);
 
                 string input = Console.ReadLine();
-                
+
                 if (input?.ToLower() == "exit")
                     isExit = true;
 
-                Translator translator = new Translator(input);                
+                Translator translator = new Translator(input);
                 var results = $@"Result:{translator.Translate()}";
                 Console.WriteLine(results);
 
