@@ -1,28 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Translate
 {
     public class Translator
     {
-        private string InputString { get; }
+        private string InputString { get; set; }
+
+        #region Constructors
+
+        public Translator()
+        {
+            InputString = String.Empty;
+        }
 
         public Translator(string input)
         {
             InputString = input;
         }
-        
-        public string Translate()
+
+        #endregion
+
+        #region Main Public Methods
+
+        public void SetValue(string input)
         {
-            throw new NotImplementedException();
+            InputString = string.IsNullOrWhiteSpace(input) ? string.Empty : input;
         }
 
-        protected bool Validate()
+        public string Translate()
         {
-            return String.IsNullOrWhiteSpace(InputString);
+            return ParseWordStrings(InputString.Split(new char[] {' '}, StringSplitOptions.None));
         }
+
+        #endregion
     }
 }

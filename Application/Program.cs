@@ -3,27 +3,28 @@ using Translate;
 
 namespace Application
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            bool isExit = false;
+            var isExit = false;
 
-            do
+            while (!isExit)
             {
-                var instructions = "Type \'exit\' to quit.\nInput:";
-                Console.WriteLine(instructions);
+                Console.WriteLine("Type \'exit\' to quit.\nInput:");
 
-                string input = Console.ReadLine();
+                var input = Console.ReadLine();
 
-                if (input?.ToLower() == "exit")
+                if (input?.ToLower() != "exit")
+                {
+                    var translator = new Translator(input);
+                    Console.WriteLine($"Result:\n{translator.Translate()}");
+                }
+                else
+                {
                     isExit = true;
-
-                Translator translator = new Translator(input);
-                var results = $@"Result:{translator.Translate()}";
-                Console.WriteLine(results);
-
-            } while (!isExit);
+                }
+            }
         }
     }
 }
