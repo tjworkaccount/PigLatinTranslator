@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Translate
 {
@@ -31,7 +29,7 @@ namespace Translate
 
         public string Translate()
         {
-            return ParseWordStrings(InputString.Split(new char[] {' '}, StringSplitOptions.None));
+            return Parser.ParseWordStrings(InputString.Split(new char[] {' '}, StringSplitOptions.None));
         }
 
         #endregion
