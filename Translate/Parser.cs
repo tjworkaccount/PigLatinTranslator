@@ -18,7 +18,14 @@ namespace Translate
                 result[i] = Preserve.IsPreserved(input[i]) ? input[i] : ParseWord(input[i]);
             }
 
-            return isSpaced ? string.Join(" ", result) : result.ToString();
+            var seperator = string.Empty;
+
+            if (isSpaced)
+            {
+                seperator = " ";
+            }
+
+            return string.Join(seperator, result);
         }
         
         public string ParseWord(string word)
@@ -51,21 +58,19 @@ namespace Translate
 
         private static KeyValuePair<string, string> SplitWord(string word)
         {
-            var result = new KeyValuePair<string, string>();
             const string vowelString = "aeiouyAEIOUY";
+
             if (vowelString.Any(word.Contains))
             {
                 var index = word.IndexOfAny(vowelString.ToCharArray());
                 var prefix = word.Substring(0, index) + "ay";
                 var seed = word.Substring(index);
-                result = new KeyValuePair<string, string>(seed, prefix);
+                return new KeyValuePair<string, string>(seed, prefix);
             }
             else
             {
-                result = new KeyValuePair<string, string>(string.Empty, word + "yay");
+                return new KeyValuePair<string, string>(string.Empty, word + "yay");
             }
-
-            return result;
         }
     }
 }
