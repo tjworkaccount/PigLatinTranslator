@@ -46,6 +46,24 @@ namespace Translate.Tests
             Assert.AreEqual("estingtay", result);
         }
 
+        [Test]
+        public void ShouldNotFormatNumber()
+        {
+            var sut = new Parser();
+            var input = "123456";
+            var result = sut.FormatWord(input);
+            Assert.AreEqual("123456", result);
+        }
+
+        [Test]
+        public void ShouldNotFormatSpecial()
+        {
+            var sut = new Parser();
+            var input = "@\\%test";
+            var result = sut.FormatWord(input);
+            Assert.AreEqual("@\\%test", result);
+        }
+
         #endregion
 
         #region ParseWord

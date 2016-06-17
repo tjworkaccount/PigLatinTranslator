@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Translate
 {
@@ -35,6 +36,11 @@ namespace Translate
 
         public string FormatWord(string word)
         {
+            if (!Regex.IsMatch(word, @"^[a-zA-Z]+$"))
+            {
+                return word;
+            }
+            
             var isCapitalized = char.IsUpper(word[0]);
 
             if (!isCapitalized)
@@ -43,10 +49,11 @@ namespace Translate
             }
 
             var charArray = word.ToCharArray();
-            charArray[0] = char.ToLower(charArray[0]);            
+            charArray[0] = char.ToLower(charArray[0]);
             charArray = TranslateWord(new string(charArray)).ToCharArray();
             charArray[0] = char.ToUpper(charArray[0]);
             return new string(charArray);
+            
         }
         
         public string TranslateWord(string word)
