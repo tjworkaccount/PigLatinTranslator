@@ -1,73 +1,71 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Translate
 {
     public class Parser
     {
-        public static string ParseWordStrings(IReadOnlyList<string> input)
+        private Preserve Preserve { get; } = new Preserve();
+
+        public string ParseStrings(IReadOnlyList<string> input, bool isSpaced = true)
         {
             var length = input.Count;
             var result = new string[length];
 
             for (var i = 0; i < length; i++)
             {
-                result[i] = IsPreserved(input[i]) ? input[i] : ParseWord(input[i]);
+                result[i] = Preserve.IsPreserved(input[i]) ? input[i] : ParseWord(input[i]);
             }
 
-            return string.Join(" ", result);
+            return isSpaced ? string.Join(" ", result) : result.ToString();
+        }
+        
+        public string ParseWord(string word)
+        {
+            return @",!?".Any(word.Contains) ? ParseStrings(Preserve.PreserveGrammar(word), false) : FormatWord(word);
         }
 
-        public static bool IsPreserved(string word)
+        public string FormatWord(string word)
         {
-            return string.IsNullOrWhiteSpace(word) ||
-                   (string.Equals(word, ",") || (string.Equals(word, "!") || string.Equals(word, "?")));
-        }
+            var isCapitalized = char.IsUpper(word[0]);
 
-        public static string ParseWord(string word)
-        {
-            var result = @",!?".Any(word.Contains) ? ParseWordStrings(ParsePunctuation(word)) : TranslateWord(word);
-            return result;
-        }
-
-        public static string[] ParsePunctuation(string word)
-        {
-            var result = new List<string>();
-
-            return result.ToArray();
-        }
-
-        public static string TranslateWord(string word)
-        {
-            string result;
-
-            if (char.IsUpper(word[0]))
+            if (!isCapitalized)
             {
-                var charArray = word.ToCharArray();
-                charArray[0] = char.ToLower(charArray[0]);
-                word = charArray.ToString();
-                result = ConvertWord(word);
-                charArray = result.ToCharArray();
-                charArray[0] = char.ToUpper(charArray[0]);
-                result = charArray.ToString();
+                return TranslateWord(word);
+            }
+
+            var charArray = word.ToCharArray();
+            charArray[0] = char.ToLower(charArray[0]);            
+            charArray = TranslateWord(new string(charArray)).ToCharArray();
+            charArray[0] = char.ToUpper(charArray[0]);
+            return new string(charArray);
+        }
+        
+        public string TranslateWord(string word)
+        {
+            var result = SplitWord(word);
+
+            return string.IsNullOrWhiteSpace(result.Key) ? result.Value : $"{result.Key}{result.Value}";
+        }
+
+        private static KeyValuePair<string, string> SplitWord(string word)
+        {
+            var result = new KeyValuePair<string, string>();
+            const string vowelString = "aeiouyAEIOUY";
+            if (vowelString.Any(word.Contains))
+            {
+                var index = word.IndexOfAny(vowelString.ToCharArray());
+                var prefix = word.Substring(0, index) + "ay";
+                var seed = word.Substring(index);
+                result = new KeyValuePair<string, string>(seed, prefix);
             }
             else
             {
-                result = ConvertWord(word);
+                result = new KeyValuePair<string, string>(string.Empty, word + "yay");
             }
 
             return result;
         }
-
-        public static string ConvertWord(string word)
-        {
-            bool isVowel = @"aeiouyAEIOUY".Any(word.Contains);
-            string prefix;
-            string stem;
-
-            string result = string.Empty;
-            return result;
-        }
-
     }
 }

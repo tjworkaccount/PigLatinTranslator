@@ -5,6 +5,7 @@ namespace Translate
     public class Translator
     {
         private string InputString { get; set; }
+        private readonly Parser _parser = new Parser();
 
         #region Constructors
 
@@ -29,7 +30,7 @@ namespace Translate
 
         public string Translate()
         {
-            return Parser.ParseWordStrings(InputString.Split(new char[] {' '}, StringSplitOptions.None));
+            return _parser.ParseStrings(InputString.Split(new char[] {' '}, StringSplitOptions.None));
         }
 
         #endregion
